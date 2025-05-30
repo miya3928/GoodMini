@@ -1,0 +1,12 @@
+<% @posts.each do |post| %>
+  <p><%= post.title %></p>
+  <p><%= post.body %></p>
+
+  <% if current_user.likes.exists?(post_id: post.id) %>
+    <%= button_to "いいね解除", post_like_path(post) ,method: :delete %>
+  <% else %>
+    <%= button_to "いいね", post_like_path(post) ,method: :post %>
+  <% end %>
+
+  <p>♡<%= post.likes.count %></p>
+<% end %>  
